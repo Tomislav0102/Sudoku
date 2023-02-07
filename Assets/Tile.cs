@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class Tile : MonoBehaviour
 {
-    GameManager _gm;
+    public ManagerNew gm;
     public Vector2Int poz;
     public int NumValue
     {
@@ -13,20 +14,38 @@ public class Tile : MonoBehaviour
         set
         {
             _numValue = value;
-            _display.text = (_numValue + 1).ToString();
-            _display.text = poz.ToString();
+          //  ordinal = poz.x + poz.y * 9;
+          if(_numValue < 0) _display.text = "|";
+          else  _display.text = _numValue.ToString();
+            _display.text = _numValue.ToString();
+            //  _display.text = blockOrdinal.ToString();
+            //  _display.text = poz.ToString();
+            //  _display.text = ordinal.ToString();
         }
     }
     int _numValue;
-    TextMeshProUGUI _display;
+    [SerializeField] TextMeshProUGUI _display;
     public int ordinal;
+    public int blockOrdinal;
+    public bool editInInspector;
 
-    public void Ini(GameManager gm, Vector2Int position, int ord)
+    public void Ini(Vector2Int position)
     {
-        _gm = gm;
         poz = position;
-        _display = GetComponent<TextMeshProUGUI>();
-        NumValue = -1;
-        ordinal = ord;
+        ordinal = transform.GetSiblingIndex();
+
+        NumValue = -10;
+        //gm.blocks3x3[blockOrdinal].ordinals.Add(ordinal);
+        //_display.color = gm.blocks3x3[blockOrdinal].col;
+        // if(blockOrdinal == 1 || blockOrdinal == 2) print($"Ordinal is {ordinal}, blockvalue is {blockOrdinal}");
+        // print(blockOrdinal);
+    }
+
+    public void MarkBlock(int blockVal)
+    {
+        if (!editInInspector) return;
+
+        blockOrdinal = blockVal;
+        _display.color = gm.blocks3x3[blockOrdinal].col;
     }
 }

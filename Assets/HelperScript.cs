@@ -53,8 +53,14 @@ namespace FirstCollection
 
             return list;
         }
+    }
 
-
+    public enum UniqueValGroup
+    {
+        Column,
+        Row,
+        Block3,
+        FixedValues //vjerovatno nepotrebno
     }
 }
 

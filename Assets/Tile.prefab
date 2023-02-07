@@ -59,8 +59,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5563e88d52f421c4582a30bfdb450e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
   poz: {x: 0, y: 0}
+  _display: {fileID: 8300279699672291056}
   ordinal: 0
+  blockOrdinal: 0
+  editInInspector: 0
 --- !u!114 &8300279699672291056
 MonoBehaviour:
   m_ObjectHideFlags: 0
