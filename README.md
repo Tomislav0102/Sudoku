@@ -1,3 +1,3 @@
 # Sudoku
  
-Just a sudoku generator, no gameplay
+Just a sudoku generator, no gameplay.
