@@ -16,8 +16,7 @@ public class Tile : MonoBehaviour
             _numValue = value;
           //  ordinal = poz.x + poz.y * 9;
           if(_numValue < 0) _display.text = "|";
-          else  _display.text = _numValue.ToString();
-            _display.text = _numValue.ToString();
+          else  _display.text = (_numValue + 1).ToString();
             //  _display.text = blockOrdinal.ToString();
             //  _display.text = poz.ToString();
             //  _display.text = ordinal.ToString();
@@ -35,8 +34,8 @@ public class Tile : MonoBehaviour
         ordinal = transform.GetSiblingIndex();
 
         NumValue = -10;
-        //gm.blocks3x3[blockOrdinal].ordinals.Add(ordinal);
-        //_display.color = gm.blocks3x3[blockOrdinal].col;
+        gm.blocks3x3[blockOrdinal].ordinals.Add(ordinal);
+        _display.color = gm.blocks3x3[blockOrdinal].col;
         // if(blockOrdinal == 1 || blockOrdinal == 2) print($"Ordinal is {ordinal}, blockvalue is {blockOrdinal}");
         // print(blockOrdinal);
     }

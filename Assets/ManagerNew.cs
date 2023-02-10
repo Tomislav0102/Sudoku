@@ -10,46 +10,6 @@ public class ManagerNew : MonoBehaviour
     readonly List<int> _values = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
     readonly Tile[,] _tiles = new Tile[9, 9];
     readonly Tile[] _allTilesByOrdinal = new Tile[81];
-    List<int> FreeValues(Vector2Int poz)
-    {
-        List<int> list = HelperScript.RandomList(9);
-        int val = 0;
-        //column
-        for (int i = 0; i < 9; i++)
-        {
-            val = _tiles[poz.x, i].NumValue;
-            if (list.Contains(val)) list.Remove(val);
-        }
-        if (list.Count <= 0)
-        {
-            return list;
-        }
-        //row
-        for (int i = 0; i < 9; i++)
-        {
-            val = _tiles[i, poz.y].NumValue;
-            if (list.Contains(val)) list.Remove(val);
-        }
-        if (list.Count <= 0)
-        {
-            return list;
-        }
-
-        //blocks OVO NIJE DOBRO
-        int bv = _tiles[poz.x, poz.y].blockOrdinal;
-        for (int i = 0; i < 9; i++)
-        {
-            val = _allTilesByOrdinal[blocks3x3[bv].ordinals[i]].NumValue;
-            if (list.Contains(val)) list.Remove(val);
-        }
-        if (list.Count <= 0)
-        {
-            return list;
-        }
-        //  if (list.Count <= 0) print($"tile is {_tiles[poz.x, poz.y]} and block is {bv}");
-
-        return list;
-    }
     bool CanFit(int num, Vector2Int targetpos)
     {
         //column
@@ -68,15 +28,6 @@ public class ManagerNew : MonoBehaviour
                 return false;
             }
         }
-        //diagonal
-        //for (int i = 0; i < 9; i++)
-        //{
-        //    for (int j = 0; j < 9; j++)
-        //    {
-        //        if (targetpos.x == targetpos.y && i==j && _tiles[i, j].NumValue == num) return false;
-        //    }
-        //}
-
         return true;
     }
 
@@ -115,7 +66,7 @@ public class ManagerNew : MonoBehaviour
     private void Start()
     {
         Stopwatch sw = Stopwatch.StartNew();
-       // StartCoroutine(Generate(0));
+        // StartCoroutine(Generate(0));
         Generate(0);
         print($"Counter is {_counterGridGeneration} and elapsed time is {sw.ElapsedMilliseconds} ms.");
 
@@ -125,7 +76,7 @@ public class ManagerNew : MonoBehaviour
     {
         for (int i = 0; i < _allTilesByOrdinal.Length; i++)
         {
-           if(_allTilesByOrdinal[i].NumValue >= startValue) _allTilesByOrdinal[i].NumValue = -10;
+            if (_allTilesByOrdinal[i].NumValue >= startValue) _allTilesByOrdinal[i].NumValue = -10;
         }
         for (int i = 0; i < 9; i++)
         {
@@ -145,7 +96,7 @@ public class ManagerNew : MonoBehaviour
                     {
                         tl.NumValue = _values[i];
                         fits = true;
-                      //  yield return null;
+                        //  yield return null;
                         break;
                     }
                 }
@@ -170,7 +121,7 @@ public class ManagerNew : MonoBehaviour
             _counterGridGeneration = 0;
             Stopwatch sw = Stopwatch.StartNew();
             Generate(0);
-                print($"Counter is {_counterGridGeneration} and elapsed time is {sw.ElapsedMilliseconds} ms.");
+            print($"Counter is {_counterGridGeneration} and elapsed time is {sw.ElapsedMilliseconds} ms.");
         }
     }
 
